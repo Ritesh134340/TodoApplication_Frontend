@@ -3,7 +3,6 @@ import { getTodos,deleteTodo } from '../Redux/AppReducer/action'
 import {useSelector,useDispatch} from "react-redux";
 import { AllTodoWrapper } from '../styles/alltodos.style';
 import TodoList from './TodoList';
-import axios from 'axios';
 import { NavLink } from "../styles/alltodos.style";
 const AllTodos = () => {
  const User=JSON.parse(localStorage.getItem("profile")) || "";
@@ -33,7 +32,7 @@ const AllTodos = () => {
      }
      dispatch(deleteTodo(payload)).then((res)=>{
        alert(res.payload.mesg)
-     }).then((res)=>{
+     }).then(()=>{
       const payload={
         "Authorization":`Bearer ${token}`
       }

@@ -23,6 +23,18 @@ const createTodos=(payload)=>(dispatch)=>{
 }
 
 
+const updateTodos=(payload)=>(dispatch)=>{
+    dispatch({type:types.UPDATE_REQUEST})
+    return axios.patch(`https://todo-application-z9c7.onrender.com/todo/update/${payload.id}`,payload.updat,{headers:payload.data}).then((res)=>{
+       return dispatch({type:types.UPDATE_SUCCESSFUL,payload:res.data})
+    }).catch((err)=>{
+      dispatch({type:types.UPDATE_FAILURE,payload:err})
+    })
+  }
+  
+
+
+
 
 const deleteTodo=(payload)=>(dispatch)=>{
     dispatch({type:types.DELETE_REQUEST});
@@ -34,4 +46,7 @@ const deleteTodo=(payload)=>(dispatch)=>{
 }
 
 
-export {getTodos,createTodos,deleteTodo}
+
+
+
+export {getTodos,createTodos,deleteTodo,updateTodos}

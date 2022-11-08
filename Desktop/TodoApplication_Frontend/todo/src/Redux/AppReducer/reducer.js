@@ -23,6 +23,11 @@ export const reducer=(state=initialState,action)=>{
      case types.DELETE_SUCCESSFUL: return {...state,isLoading:false,isError:false};
      case types.DELETE_FAILURE:return {...state,isLoading:false,isError:true};
 
+
+     case types.UPDATE_REQUEST:return {...state,isLoading:true,isError:false};
+     case types.UPDATE_SUCCESSFUL: return {...state,isLoading:false,isError:false};
+     case types.UPDATE_FAILURE:return {...state,isLoading:false,isError:true};
+
     default:return state
   }
 }
