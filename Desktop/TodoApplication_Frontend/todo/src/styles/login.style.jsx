@@ -16,6 +16,7 @@ export const LoginWrapper=styled.div`
        margin-bottom:10px;
     }
     h5{
+      
         text-align: center;
         margin-top:3px;
         
@@ -31,6 +32,9 @@ export const InputWrapper=styled.div`
 
 export const HeadingWrapper=styled.div `
     text-align:center;
+    margin-top:10px;
+    margin-bottom:30px;
+  
 `
 
 export const SubmitWrapper=styled.div`

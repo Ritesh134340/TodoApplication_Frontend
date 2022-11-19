@@ -53,7 +53,7 @@ const AllTodos = () => {
    isLoading ? <h1 style={{margin:"auto",marginTop:"30px",textAlign:"center",fontFamily:"sans-serif",fontSize:"18px"}}>Loading todos...</h1> : <AllTodoWrapper>
 
    
-    { Todos.length>0 ? <TodoList handleDelete={handleDelete}  data={Todos}/> :<h3 style={{margin:"auto",marginTop:"70px",width:"390px",fontFamily:"sans-serif",letterSpacing:"0.7px"}}>You don't have any todo...<br/>{" "}<NavLink to="/">Create Now !</NavLink></h3>}
+    { Todos?.length>0 ? <TodoList handleDelete={handleDelete}  data={Todos}/> :<h3 style={{margin:"auto",marginTop:"70px",width:"390px",fontFamily:"sans-serif",letterSpacing:"0.7px"}}>You don't have any todo...<br/>{" "}<NavLink to="/">Create Now !</NavLink></h3>}
   
      </AllTodoWrapper>
    

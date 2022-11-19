@@ -28,6 +28,11 @@ export const reducer=(state=initialState,action)=>{
      case types.UPDATE_SUCCESSFUL: return {...state,isLoading:false,isError:false};
      case types.UPDATE_FAILURE:return {...state,isLoading:false,isError:true};
 
+
+     case types.GETBYID_REQUEST:return {...state,isLoading:true,isError:false};
+     case types.GETBYID_SUCCESSFUL: return {...state,isLoading:false,isError:false};
+     case types.GETBYID_FAILURE:return {...state,isLoading:false,isError:true};
+
     default:return state
   }
 }

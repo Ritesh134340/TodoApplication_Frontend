@@ -1,8 +1,8 @@
 import axios from 'axios';
-import React, { useEffect } from 'react'
+import React, { useEffect,useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch,useSelector } from 'react-redux';
-import {getTodo,updateTodos} from "../Redux/AppReducer/action"
+import {getById,updateTodos} from "../Redux/AppReducer/action"
 
 
 const EditTodo = () => {
@@ -10,22 +10,43 @@ const EditTodo = () => {
   const params=useParams();
   const User=JSON.parse(localStorage.getItem("profile")) || "";
   const token=User.token;
+  const [data,setData]=useState({})
 
  useEffect(()=>{
-     const id=params.id
-    const payload={
-     data: {Authorization:`Bearer ${token}`},
-     id:id
-    }
-    dispatch(updateTodos(payload)).then((res)=>{
-      console.log(res.payload)
-    })
+   const id=params.id;
+   const payload={
+    data:{Authorization:`Bearer ${token}`},
+    id:id
+   }
+
+   dispatch(getById(payload)).then((res)=>{
+    setData(res.payload.data)
+   }).catch((err)=>{
+    console.log(err)
+   })
 
  },[])
 
+ const handleUpdate=()=>{
+  const id=params.id
+  const payload={
+   data: {Authorization:`Bearer ${token}`},
+   updat:{},
+   id:id
+  }
+  dispatch(updateTodos(payload)).then((res)=>{
+    console.log(res.payload)
+  })
+ }
+  console.log(data)
   return (
     <div>
-    Edit todo
+       <form>
+        <label>Title</label>
+        <input value={data.title}></input>
+        <label>Status</label>
+      
+       </form>
     </div>
   )
 }

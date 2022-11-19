@@ -35,6 +35,8 @@ export const InputWrapper=styled.div`
 
 export const HeadingWrapper=styled.div `
     text-align:center;
+    margin-top:10px;
+    margin-bottom:30px;
 `
 
 export const SubmitWrapper=styled.div`
