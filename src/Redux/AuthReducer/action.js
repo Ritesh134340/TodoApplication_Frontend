@@ -1,11 +1,13 @@
 import * as types from "./actionTypes";
 import axios from "axios";
+const {REACT_APP_URL}=process.env
 
 
 
 const signup=(payload)=>(dispatch)=>{
     dispatch({type:types.SIGNUP_REQUEST});
-    return  axios.post("https://todo-application-z9c7.onrender.com/user/signup",payload).then((res)=>{
+   
+    return  axios.post(`${REACT_APP_URL}/user/signup`,payload).then((res)=>{
       
    return dispatch({type:types.SIGNUP_SUCCESS,payload:res})
 
@@ -17,7 +19,7 @@ const signup=(payload)=>(dispatch)=>{
 
 const login=(payload)=>(dispatch)=>{
     dispatch({type:types.LOGIN_REQUEST});
-    return axios.post("https://todo-application-z9c7.onrender.com/user/login",payload).then((res)=>{
+    return axios.post(`${REACT_APP_URL}/user/login`,payload).then((res)=>{
        return  dispatch({type:types.LOGIN_SUCCESS,payload:res.data})
     }).catch((err)=>{
         dispatch({type:types.LOGIN_FAILURE})

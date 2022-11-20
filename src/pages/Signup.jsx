@@ -8,7 +8,6 @@ import {signup} from "../Redux/AuthReducer/action"
 const Signup = () => {
   const dispatch=useDispatch();
   const navigate=useNavigate()
-  const [alrt,setAlrt]=useState("")
   const [name,setName]=useState("")
   const [last,setLast]=useState("")
   const [email,setEmail]=useState("")
@@ -20,6 +19,7 @@ const Signup = () => {
  
 
   const handleSubmit=(e)=>{
+    
     const payload={
       first_name:name,
       last_name:last,
@@ -30,7 +30,7 @@ const Signup = () => {
     if(name && last && email && password){
        dispatch(signup(payload)).then((res)=>{
         let resp=(res.payload.data.mesg)
-         setAlrt(resp)
+     
          alert(resp)
          navigate("/login")
        }).catch((err)=>{
