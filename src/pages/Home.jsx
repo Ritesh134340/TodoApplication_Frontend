@@ -1,7 +1,7 @@
 import React, { useEffect ,useState} from 'react'
 import { getTodos,createTodos } from '../Redux/AppReducer/action'
 import { useDispatch,useSelector } from 'react-redux'
-import { HomeWrapper } from '../styles/home.styled'
+import { HomeWrapper, MainHomeDiv } from '../styles/home.styled'
 import {MdAddCircle} from "react-icons/md"
 const Home = () => {
   const User=JSON.parse(localStorage.getItem("profile")) || ""
@@ -24,14 +24,16 @@ const Home = () => {
   }
  
   return (
- 
-    isLoading ? <img src="https://createwebsite.net/wp-content/uploads/2015/09/GD.gif" style={{height:"150px",display:"flex",alignItems:"center",justifyContent:"center",margin:"auto",marginTop:"200px"}}></img> : <HomeWrapper>
+    <MainHomeDiv >
+
+    {isLoading ? <img src="https://createwebsite.net/wp-content/uploads/2015/09/GD.gif" style={{height:"150px",display:"flex",alignItems:"center",justifyContent:"center",margin:"auto",marginTop:"200px"}}></img> : <HomeWrapper>
        
           <input type="text" placeholder="Add something..." onChange={(e)=>setTodoTitle(e.target.value)}></input>
           <button onClick={handleAddTodo}><MdAddCircle style={{ fontSize:"40px"
   
           }}/></button>
-      </HomeWrapper>
+      </HomeWrapper>}
+      </MainHomeDiv>
   )
 }
 

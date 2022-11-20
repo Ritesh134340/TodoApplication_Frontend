@@ -9,6 +9,7 @@ export const SignupWrapper=styled.div`
     margin-top:30px;
     border-radius:13px;
     border:1px solid black;
+  
     input{
        width:300px;
        height:25px;

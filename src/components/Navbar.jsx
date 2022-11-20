@@ -4,7 +4,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout } from "../Redux/AuthReducer/action";
 import { NavLink } from "../styles/navbar.style";
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Navbar = () => {
   const User=JSON.parse(localStorage.getItem("profile")) || ""
   const token=User.token || "" 
@@ -20,9 +21,24 @@ const Navbar = () => {
     dispatch(logout());
     const profile = "";
     localStorage.setItem("profile", JSON.stringify(profile));
-    navigate("/login");
+    toast.success("Logout Successful!",{
+      position: "top-center",
+      autoClose: 2000,
+      hideProgressBar: true,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      })
+
+      setTimeout(()=>{
+        navigate("/login");
+      },2200)
+  
   };
   return (
+    <>
     <Nav>
       <LeftWrapper>
         <NavLink to="/">Home</NavLink>
@@ -41,7 +57,10 @@ const Navbar = () => {
         )}
         
       </RightWrapper>
+    
     </Nav>
+      < ToastContainer/>
+    </>
   );
 };
 

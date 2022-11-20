@@ -4,6 +4,8 @@ import { HeadingWrapper, InputWrapper, NavLink, SignupWrapper, SubmitWrapper } f
 import { useState } from 'react'
 import { useDispatch,useSelector } from 'react-redux'
 import {signup} from "../Redux/AuthReducer/action"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
   const dispatch=useDispatch();
@@ -30,9 +32,20 @@ const Signup = () => {
     if(name && last && email && password){
        dispatch(signup(payload)).then((res)=>{
         let resp=(res.payload.data.mesg)
-     
-         alert(resp)
-         navigate("/login")
+        toast.success(resp,{
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          })
+         setTimeout(()=>{
+          navigate("/login")
+         },2200)
+        
        }).catch((err)=>{
         console.log(err)
        })
@@ -41,8 +54,10 @@ const Signup = () => {
   }
 
   return (
-    
-        isLoading ?<img src="https://createwebsite.net/wp-content/uploads/2015/09/GD.gif" style={{height:"150px",display:"flex",alignItems:"center",justifyContent:"center",margin:"auto",marginTop:"200px"}}></img> :<SignupWrapper>
+         <div>
+
+        
+        {isLoading ?<img src="https://createwebsite.net/wp-content/uploads/2015/09/GD.gif" style={{height:"150px",display:"flex",alignItems:"center",justifyContent:"center",margin:"auto",marginTop:"200px"}}></img> :<SignupWrapper>
        
         <HeadingWrapper><h1>Sign Up</h1></HeadingWrapper>
          <form onSubmit={handleSubmit}>
@@ -64,9 +79,10 @@ const Signup = () => {
           
          </form>
          <h5>Already have an account ?<NavLink to="/login">Sign In</NavLink></h5>
-      </SignupWrapper>
+         <ToastContainer/>
+      </SignupWrapper>}
 
-    
+      </div>
   
   )
 }

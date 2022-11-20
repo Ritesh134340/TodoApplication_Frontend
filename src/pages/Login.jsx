@@ -10,7 +10,8 @@ import { NavLink } from "../styles/signup.style";
 import {login} from "../Redux/AuthReducer/action"
 import { useDispatch,useSelector } from "react-redux";
 import {useNavigate} from "react-router-dom"
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
   const dispatch=useDispatch();
@@ -46,11 +47,35 @@ const Login = () => {
         }
 
         localStorage.setItem("profile",JSON.stringify(data))
-        navigate("/")
+        
+        toast.success(res.payload.mesg,{
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          })
+
+          setTimeout(()=>{
+            navigate("/")
+          },2000.5)
+        
        
        }
        else{
-        alert(res.payload.mesg)
+        toast.error(res.payload.mesg, {
+          position: "top-center",
+          autoClose: 2000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+          })
        }
       
        
@@ -81,6 +106,7 @@ const Login = () => {
         </InputWrapper>
       </form>
       <h5>Don't have an account ?<NavLink to="/signup">Sign Up</NavLink></h5>
+      <ToastContainer/>
     </LoginWrapper>
   );
 };

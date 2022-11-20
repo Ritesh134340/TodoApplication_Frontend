@@ -4,6 +4,7 @@ export const LoginWrapper=styled.div`
    font-family:sans-serif;
     width:350px;
     height:330px;
+    cursor:pointer;
     margin:auto;
     border:1px solid black;
     margin-top:30px;
